@@ -34,3 +34,22 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+
+
+  build-db:
+    needs: build
+    runs-on: windows-latest
+    steps:
+      - run: echo "Hello Windows"
+
+  build-api:
+    needs: build
+    runs-on: windows-latest
+    steps:
+      - run: echo "Building API"
+
+  packaging:
+    needs: [build, build-db]
+    runs-on: macos-latest
+    steps:
+      - run: echo "Hello Macos"
